@@ -1,0 +1,109 @@
+h1 {
+  font-family: Silkscreen;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 20px;
+  margin: 16px 0 8px 0;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-49%, -50%);
+}
+
+.container {
+  width: 680px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+}
+
+.page {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  font-family: Silkscreen;
+  padding: 16px;
+  box-sizing: border-box;
+  color: #5d4037;
+}
+
+.divider {
+  height: 386px;
+  width: 27px;
+  margin: 0 -10px;
+  margin-top: 11px;
+  z-index: 3;
+  background-image: url('../../../assets/paper-spiral.png');
+  background-repeat: repeat-y;
+  background-size: 27px;
+}
+
+.image-container {
+  background-image: url('../../../assets/profile-picture.jpg');
+  background-repeat: no-repeat;
+  background-size:  auto 250px;
+  background-position: center;
+  width: 180px;
+  height: 250px;
+  cursor: pointer;
+}
+
+.small {
+  font-size: 0.7em;
+  color: #8d6e63;
+  cursor: default;
+}
+
+.off-bottom {
+  position: absolute;
+  bottom: -16px;
+  right: 0;
+}
+
+.input {
+  font-size: 16px;
+  padding: 4px 6px;
+}
+
+label {
+  margin-bottom: 4px;
+  margin-top: 8px;
+  display: block;
+}
+
+.form {
+  margin-left: 16px;
+}
+
+.buttons-list {
+  display: flex;
+}
+
+.square {
+  width: 60px;
+  height: 60px;
+  margin: 4px;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+button.square:active {
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+.square.wooden-border {
+  border-image-width: 1.2em 1.2em 1.2em 1.2em;
+}
+
+.square img {
+  margin: 1px;
+}
