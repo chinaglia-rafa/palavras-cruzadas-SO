@@ -1,0 +1,23 @@
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-49%, -50%);
+}
+
+.container {
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+}
+
+.page {
+  width: 600px;
+  height: 400px;
+  position: relative;
+  font-family: Silkscreen;
+  padding: 16px;
+  box-sizing: border-box;
+  color: #5d4037;
+}

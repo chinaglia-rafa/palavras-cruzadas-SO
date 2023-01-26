@@ -4,49 +4,80 @@
     <br />
     <div class="form">
       <label for="character-name">Nome:</label>
-      <input id="character-name" class="input wooden-border-2" type="text" />
+      <input
+        [(ngModel)]="character.name"
+        id="character-name"
+        class="input wooden-border-2"
+        type="text"
+      />
       <label for="character-pronoums">Pronomes:</label>
       <select
         name="character-pronoums"
         id="character-pronoums"
         class="input wooden-border-2"
+        [(ngModel)]="character.pronoums"
       >
         <option value="ele/dele">ele/dele</option>
         <option value="ela/dela">ela/dela</option>
         <option value="elu/delu">elu/delu</option>
       </select>
-      <h2>Classe</h2>
+      <h2>Classe: {{ character.class }}</h2>
       <div class="buttons-list">
-        <button class="square wooden-border">
+        <button
+          [class.wooden-border]="character.class !== 'guerreiro'"
+          [class.wooden-border-2]="character.class === 'guerreiro'"
+          class="square"
+          (click)="character.class = 'guerreiro'"
+        >
           <img
-            src="../../../assets/icons/warrior.png"
+            src="../../../assets/icons/guerreiro.png"
             width="50"
             height="50"
             alt=""
           />
         </button>
-        <button class="square wooden-border">
+        <button
+          [class.wooden-border]="character.class !== 'mago'"
+          [class.wooden-border-2]="character.class === 'mago'"
+          class="square wooden-border"
+          (click)="character.class = 'mago'"
+        >
           <img
-            src="../../../assets/icons/mage.png"
+            src="../../../assets/icons/mago.png"
             width="50"
             height="50"
             alt=""
           />
         </button>
-        <button class="square wooden-border">
+        <button
+          [class.wooden-border]="character.class !== 'caçador'"
+          [class.wooden-border-2]="character.class === 'caçador'"
+          class="square wooden-border"
+          (click)="character.class = 'caçador'"
+        >
           <img
-            src="../../../assets/icons/hunter.png"
+            src="../../../assets/icons/caçador.png"
             width="50"
             height="50"
             alt=""
           />
         </button>
       </div>
+      <br />
+      <paper-button (click)="continue()">Continuar ></paper-button>
     </div>
   </div>
   <div class="divider"></div>
-  <div class="page paper-border">
-    <div class="golden-border center image-container">
+  <div class="page paper-border prevent-select">
+    <div
+      (click)="changePortrait($event)"
+      [style]="
+        'background-image: url(\'../../../assets/portraits/' +
+        portraits[currentPortrait] +
+        '\');'
+      "
+      class="golden-border center image-container"
+    >
       <div class="off-bottom small right">Clique para trocar</div>
     </div>
   </div>

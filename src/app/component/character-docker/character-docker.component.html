@@ -1,0 +1,30 @@
+<div class="container wooden-border-2">
+  <div
+    [style]="
+      'background-image: url(\'../../../assets/portraits/' +
+      playerService.character.profilePicture +
+      '\');'
+    "
+    class="golden-border image-container"
+  ></div>
+  <div>
+    <div style="display: flex">
+      <h1>{{ playerService.character.name }}</h1>
+      <img
+        class="class-icon"
+        src="../../../assets/icons/{{ playerService.character.class }}.png"
+        alt=""
+      />
+    </div>
+    <div class="healthbar">
+      <img
+        *ngFor="let i of playerService.character.lives"
+        src="../../../assets/icons/heart.svg"
+        width="32"
+        height="32"
+        alt=""
+      />
+    </div>
+    <div class="hand"></div>
+  </div>
+</div>
