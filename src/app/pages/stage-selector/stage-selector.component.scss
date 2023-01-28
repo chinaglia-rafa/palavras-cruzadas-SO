@@ -1,3 +1,10 @@
+h1 {
+  font-family: Silkscreen;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
 .center {
   position: absolute;
   top: 50%;
@@ -20,4 +27,51 @@
   padding: 16px;
   box-sizing: border-box;
   color: #5d4037;
+}
+
+.stages {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stage {
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.stage.done {
+  pointer-events: none;
+}
+
+.stage:hover:not(.done) {
+  border-color: rgba(93, 64, 55, 0.6);
+}
+
+.stage paper-button {
+  margin-top: 5px;
+}
+
+.stage .image {
+  width: 140px;
+  height: 105px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  margin-bottom: 6px;
+}
+
+.done {
+  opacity: 0.5;
+  filter: sepia() brightness(0.85);
+  cursor: default;
+}
+
+.btn-voltar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
 }

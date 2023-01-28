@@ -59,7 +59,7 @@ export class CharacterCreatorComponent implements OnInit {
     console.log('Character is', this.character);
     if (this.character.class === 'guerreiro') this.character.lives = Array(4);
     else this.character.lives = Array(3);
-    this.playerService.character = this.character;
+    this.playerService.setCharacter(this.character);
 
     this.router.navigate(['/stage-selector']);
   }

@@ -5,6 +5,7 @@ import { CharacterCreatorComponent } from './pages/character-creator/character-c
 import { HomeComponent } from './pages/home/home.component';
 import { StageSelectorComponent } from './pages/stage-selector/stage-selector.component';
 import { StageOneComponent } from './pages/stages/stage-one/stage-one.component';
+import { StageTwoComponent } from './pages/stages/stage-two/stage-two.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'stage-one',
     component: StageOneComponent,
+    canActivate: [CharacterGuard],
+  },
+  {
+    path: 'stage-two',
+    component: StageTwoComponent,
     canActivate: [CharacterGuard],
   },
 ];

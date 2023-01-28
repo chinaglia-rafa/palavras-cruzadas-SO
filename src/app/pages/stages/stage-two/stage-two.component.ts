@@ -10,11 +10,11 @@ export interface Dica {
 }
 
 @Component({
-  selector: 'app-stage-one',
-  templateUrl: './stage-one.component.html',
-  styleUrls: ['./stage-one.component.scss'],
+  selector: 'app-stage-two',
+  templateUrl: './stage-two.component.html',
+  styleUrls: ['./stage-two.component.scss'],
 })
-export class StageOneComponent implements OnInit {
+export class StageTwoComponent implements OnInit {
   dialogue: Dialogue;
 
   @ViewChild('gridElement') gridEl: ElementRef;
@@ -22,17 +22,17 @@ export class StageOneComponent implements OnInit {
   isHorizontal = false;
 
   grid = [
-    ['', '?0', '', '', '', '', '', '?4', '', ''],
-    ['', 'R', '', '?2', '', '', '', 'P', '', ''],
-    ['', 'A', '', 'R', '', '', '', 'R', '', ''],
-    ['?1', 'F', 'R', 'I', 'O', '', '', 'O', '', ''],
-    ['', 'A', '', 'O', '', '', '', 'C', '', ''],
-    ['', 'E', '', '', '', '', '', 'E', '', ''],
-    ['?3', 'L', 'E', 'G', 'O', 'L', 'A', 'S', '', ''],
-    ['', '', '', '', '', '', '', 'S', '', ''],
-    ['', '', '', '', '', '', '', 'O', '', ''],
-    ['', '', '', '', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '?0', '', '', '', '', '', '?4', '', '', ''],
+    ['', 'R', '', '?2', '', '', '', 'P', '', '', ''],
+    ['', 'A', '', 'R', '', '', '?5', 'R', 'A', 'T', 'O'],
+    ['?1', 'F', 'R', 'I', 'O', '', '', 'O', '', '', ''],
+    ['', 'A', '', 'O', '', '', '', 'C', '', '', ''],
+    ['', 'E', '', '', '', '', '', 'E', '', '', ''],
+    ['?3', 'L', 'E', 'G', 'O', 'L', 'A', 'S', '', '', ''],
+    ['', '', '', '', '', '', '', 'S', '', '', ''],
+    ['', '', '', '', '', '', '', 'O', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', ''],
   ];
 
   dicas = [
@@ -60,6 +60,11 @@ export class StageOneComponent implements OnInit {
       id: '?4',
       text: 'Nome que se dá ao conjunto de ações com um objetivo específico',
       alt: 'Texto alternativo para o ?4',
+    } as Dica,
+    {
+      id: '?5',
+      text: 'Animal sapequinha que roeu a roupa do rei de roma',
+      alt: 'Texto alternativo para o ?5',
     } as Dica,
   ];
 
@@ -248,7 +253,7 @@ export class StageOneComponent implements OnInit {
 
     if (passed) {
       alert('VITORIA');
-      this.playerService.completeStage(0);
+      this.playerService.completeStage(1);
       this.router.navigateByUrl('/stage-selector');
     } else console.log('ainda não');
   }

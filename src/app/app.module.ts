@@ -12,6 +12,7 @@ import { CharacterDockerComponent } from './component/character-docker/character
 import { StageSelectorComponent } from './pages/stage-selector/stage-selector.component';
 import { StageOneComponent } from './pages/stages/stage-one/stage-one.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { StageTwoComponent } from './pages/stages/stage-two/stage-two.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CharacterDockerComponent,
     StageSelectorComponent,
     StageOneComponent,
+    StageTwoComponent,
   ],
   imports: [
     BrowserModule,

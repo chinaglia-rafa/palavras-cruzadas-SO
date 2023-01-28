@@ -4,4 +4,5 @@ export class Character {
   profilePicture: string;
   pronoums: string;
   class: string;
+  stages: [boolean, boolean, boolean] = [false, false, false];
 }
