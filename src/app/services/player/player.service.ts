@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Character } from 'src/app/models/player.model';
 
 @Injectable({
@@ -6,6 +7,8 @@ import { Character } from 'src/app/models/player.model';
 })
 export class PlayerService {
   character: Character = new Character();
+
+  activeCard$ = new BehaviorSubject<string>('');
 
   constructor() {
     const character = JSON.parse(localStorage.getItem('char'));
@@ -36,8 +39,32 @@ export class PlayerService {
     return this.character.lives.length;
   }
 
+  heal(): number {
+    this.character.lives.push(...Array(1));
+    this.persist();
+    return this.character.lives.length;
+  }
+
   completeStage(index: number): void {
     this.character.stages[index] = true;
     this.persist();
+  }
+
+  activate(card: string): void {
+    if (
+      [
+        'Por quê?',
+        'Quem?',
+        'Como?',
+        'Quando?',
+        'Onde?',
+        'Armadilha de espinhos',
+        'Trespassar',
+        'Resistência sobrenatural',
+        'Grimório perdido',
+        'Visão arcana',
+      ].includes(card)
+    )
+      this.activeCard$.next(card);
   }
 }

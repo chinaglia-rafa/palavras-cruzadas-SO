@@ -25,6 +25,12 @@
         alt=""
       />
     </div>
-    <div class="hand"></div>
+    <div class="hand">
+      <app-skill-card
+        *ngFor="let card of playerService.character.hand; let i = index"
+        (click)="activate(card, i)"
+        [card]="card"
+      ></app-skill-card>
+    </div>
   </div>
 </div>

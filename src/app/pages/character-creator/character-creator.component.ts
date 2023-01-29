@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  Card,
+  deck,
+  hunterDeck,
+  mageDeck,
+  warriorDeck,
+} from 'src/app/models/card.model';
 import { Character } from 'src/app/models/player.model';
 import { PlayerService } from 'src/app/services/player/player.service';
 
@@ -59,6 +66,23 @@ export class CharacterCreatorComponent implements OnInit {
     console.log('Character is', this.character);
     if (this.character.class === 'guerreiro') this.character.lives = Array(4);
     else this.character.lives = Array(3);
+    const hand: [Card | null, Card | null, Card | null] = [null, null, null];
+    if (this.character.class === 'guerreiro')
+      hand[2] = warriorDeck[Math.floor(Math.random() * warriorDeck.length)];
+    else if (this.character.class === 'mago')
+      hand[2] = mageDeck[Math.floor(Math.random() * mageDeck.length)];
+    else if (this.character.class === 'caçador')
+      hand[2] = hunterDeck[Math.floor(Math.random() * hunterDeck.length)];
+
+    let a = 0;
+    let b = 0;
+    while (a == b) {
+      a = Math.floor(Math.random() * deck.length);
+      b = Math.floor(Math.random() * deck.length);
+    }
+    hand[0] = deck[a];
+    hand[1] = deck[b];
+    this.character.hand = hand;
     this.playerService.setCharacter(this.character);
 
     this.router.navigate(['/stage-selector']);

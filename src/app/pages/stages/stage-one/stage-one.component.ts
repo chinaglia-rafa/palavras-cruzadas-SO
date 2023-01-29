@@ -6,7 +6,11 @@ import { PlayerService } from 'src/app/services/player/player.service';
 export interface Dica {
   id: string;
   text: string;
-  alt: string;
+  quem: string;
+  como: string;
+  quando: string;
+  onde: string;
+  porque: string;
 }
 
 @Component({
@@ -16,6 +20,8 @@ export interface Dica {
 })
 export class StageOneComponent implements OnInit {
   dialogue: Dialogue;
+
+  activeCard: string;
 
   @ViewChild('gridElement') gridEl: ElementRef;
 
@@ -39,27 +45,47 @@ export class StageOneComponent implements OnInit {
     {
       id: '?0',
       text: 'Nome de um dos criadores deste jogo',
-      alt: 'Texto alternativo para o ?0',
+      quem: 'Texto QUEM para o ?0',
+      como: 'Texto COMO para o ?0',
+      quando: 'Texto QUANDO para o ?0',
+      onde: 'Texto ONDE para o ?0',
+      porque: 'Texto PORQUE para o ?0',
     } as Dica,
     {
       id: '?1',
       text: 'Ausência de calor',
-      alt: 'Texto alternativo para o ?1',
+      quem: 'Texto QUEM para o ?1',
+      como: 'Texto COMO para o ?1',
+      quando: 'Texto QUANDO para o ?1',
+      onde: 'Texto ONDE para o ?1',
+      porque: 'Texto PORQUE para o ?1',
     } as Dica,
     {
       id: '?2',
       text: "Corpo d'água doce corrente",
-      alt: 'Texto alternativo para o ?2',
+      quem: 'Texto QUEM para o ?2',
+      como: 'Texto COMO para o ?2',
+      quando: 'Texto QUANDO para o ?2',
+      onde: 'Texto ONDE para o ?2',
+      porque: 'Texto PORQUE para o ?2',
     } as Dica,
     {
       id: '?3',
       text: 'Arqueiro da Sociedade do Anel',
-      alt: 'Texto alternativo para o ?3',
+      quem: 'Texto QUEM para o ?3',
+      como: 'Texto COMO para o ?3',
+      quando: 'Texto QUANDO para o ?3',
+      onde: 'Texto ONDE para o ?3',
+      porque: 'Texto PORQUE para o ?3',
     } as Dica,
     {
       id: '?4',
       text: 'Nome que se dá ao conjunto de ações com um objetivo específico',
-      alt: 'Texto alternativo para o ?4',
+      quem: 'Texto QUEM para o ?4',
+      como: 'Texto COMO para o ?4',
+      quando: 'Texto QUANDO para o ?4',
+      onde: 'Texto ONDE para o ?4',
+      porque: 'Texto PORQUE para o ?4',
     } as Dica,
   ];
 
@@ -67,6 +93,8 @@ export class StageOneComponent implements OnInit {
   firstEditPosition: [number, number] = [-1, -1];
 
   editMode = false;
+
+  waitingForSelection = false;
 
   constructor(private playerService: PlayerService, private router: Router) {}
 
@@ -83,6 +111,42 @@ export class StageOneComponent implements OnInit {
     this.dialogue.message.push(
       new Message('Guide', 'portrait-3.jpg', false, 'Hello. I can help you')
     );
+
+    this.playerService.activeCard$.subscribe((card: string) => {
+      console.log('acting upon activation of', card);
+      if (
+        [
+          'Por quê?',
+          'Quem?',
+          'Como?',
+          'Quando?',
+          'Onde?',
+          'Grimório perdido',
+        ].includes(card)
+      ) {
+        this.activeCard = card;
+        this.waitingForSelection = true;
+      } else if (card === 'Armadilha de espinhos') {
+        const optitons = this.gridEl.nativeElement.querySelectorAll(
+          '.letter-input:not(.correct)'
+        );
+        const target = Math.floor(Math.random() * (optitons.length - 1));
+        console.log('Target is', optitons, target);
+        optitons[target].classList.add('trapped');
+      } else if (card === 'Trespassar' || card === 'Resistência sobrenatural') {
+        this.activeCard = card;
+      } else if (card === 'Visão arcana') {
+        for (let i = 0; i < 3; i++) {
+          const options = this.gridEl.nativeElement.querySelectorAll(
+            '.letter-input:not(.correct)'
+          );
+          const target = Math.floor(Math.random() * (options.length - 1));
+          options[target].value = options[target].dataset.secret.toLowerCase();
+          options[target].classList.add('correct');
+          options[target].disabled = true;
+        }
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -91,6 +155,36 @@ export class StageOneComponent implements OnInit {
 
   keydown(event: KeyboardEvent): void {
     if (event.key === 'Tab') event.preventDefault();
+  }
+
+  select(selected: string): void {
+    if (!this.waitingForSelection) return;
+
+    if (
+      this.activeCard === 'Por quê?' ||
+      this.activeCard === 'Grimório perdido'
+    ) {
+      this.dicas[selected[1]].text +=
+        '. Por quê: ' + this.dicas[selected[1]].porque;
+    }
+    if (this.activeCard === 'Quem?' || this.activeCard === 'Grimório perdido') {
+      this.dicas[selected[1]].text += '. Quem: ' + this.dicas[selected[1]].quem;
+    }
+    if (this.activeCard === 'Como?' || this.activeCard === 'Grimório perdido') {
+      this.dicas[selected[1]].text += '. Como: ' + this.dicas[selected[1]].como;
+    }
+    if (
+      this.activeCard === 'Quando?' ||
+      this.activeCard === 'Grimório perdido'
+    ) {
+      this.dicas[selected[1]].text +=
+        '. Quando: ' + this.dicas[selected[1]].quando;
+    }
+    if (this.activeCard === 'Onde?' || this.activeCard === 'Grimório perdido') {
+      this.dicas[selected[1]].text += '. Onde: ' + this.dicas[selected[1]].onde;
+    }
+    this.waitingForSelection = false;
+    this.activeCard = '';
   }
 
   next(row: number, col: number, event: KeyboardEvent): boolean {
@@ -220,16 +314,42 @@ export class StageOneComponent implements OnInit {
 
   confirmWords(): void {
     let error = false;
-    console.log('Confirm words');
+    let oneRight = false;
     const all = this.gridEl.nativeElement.querySelectorAll('.dirty');
     for (const el of all) {
       if (el.value.toLowerCase() == el.dataset.secret.toLowerCase()) {
+        oneRight = true;
         el.classList.add('correct');
         el.disabled = true;
+        if (el.classList.contains('trapped')) {
+          this.playerService.heal();
+          el.classList.remove('trapped');
+        }
       } else {
         error = true;
         el.value = '';
         el.classList.add('error');
+      }
+    }
+
+    if (
+      oneRight &&
+      (this.activeCard === 'Trespassar' ||
+        this.activeCard === 'Resistência sobrenatural')
+    ) {
+      let count = 1;
+      if (this.activeCard === 'Resistência sobrenatural')
+        count = error
+          ? this.playerService.character.lives.length - 1
+          : this.playerService.character.lives.length;
+      for (let i = 0; i < count; i++) {
+        const options = this.gridEl.nativeElement.querySelectorAll(
+          '.letter-input:not(.correct)'
+        );
+        const target = Math.floor(Math.random() * (options.length - 1));
+        options[target].value = options[target].dataset.secret.toLowerCase();
+        options[target].classList.add('correct');
+        options[target].disabled = true;
       }
     }
 

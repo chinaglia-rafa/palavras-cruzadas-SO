@@ -13,6 +13,7 @@ import { StageSelectorComponent } from './pages/stage-selector/stage-selector.co
 import { StageOneComponent } from './pages/stages/stage-one/stage-one.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { StageTwoComponent } from './pages/stages/stage-two/stage-two.component';
+import { SkillCardComponent } from './component/skill-card/skill-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { StageTwoComponent } from './pages/stages/stage-two/stage-two.component'
     StageSelectorComponent,
     StageOneComponent,
     StageTwoComponent,
+    SkillCardComponent,
   ],
   imports: [
     BrowserModule,
