@@ -24,7 +24,7 @@ const track = new Card(
   'Rastrear',
   'eye.png',
   'Habilidade - caçador',
-  'Escolha uma letra e rastreie sua posição em todas as palavras.',
+  'A próxima letra que você acertar será encontrada em todas as palavras.',
   '"A tecnologia, tão artificial quanto pareça, é apenas natureza muito bem organizada."'
 );
 const why = new Card(

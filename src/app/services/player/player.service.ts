@@ -63,6 +63,7 @@ export class PlayerService {
         'Resistência sobrenatural',
         'Grimório perdido',
         'Visão arcana',
+        'Rastrear',
       ].includes(card)
     )
       this.activeCard$.next(card);

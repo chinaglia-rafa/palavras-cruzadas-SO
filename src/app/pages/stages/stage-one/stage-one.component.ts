@@ -133,7 +133,11 @@ export class StageOneComponent implements OnInit {
         const target = Math.floor(Math.random() * (optitons.length - 1));
         console.log('Target is', optitons, target);
         optitons[target].classList.add('trapped');
-      } else if (card === 'Trespassar' || card === 'Resistência sobrenatural') {
+      } else if (
+        card === 'Trespassar' ||
+        card === 'Resistência sobrenatural' ||
+        card === 'Rastrear'
+      ) {
         this.activeCard = card;
       } else if (card === 'Visão arcana') {
         for (let i = 0; i < 3; i++) {
@@ -298,6 +302,7 @@ export class StageOneComponent implements OnInit {
   }
 
   changeDirection(row: number, col: number): void {
+    this.selectedPosition = [row, col];
     if (
       (!this.isHorizontal &&
         !this.grid[row][col + 1] &&
@@ -308,17 +313,17 @@ export class StageOneComponent implements OnInit {
     )
       return;
     this.isHorizontal = !this.isHorizontal;
-    console.log(this.isHorizontal);
-    this.selectedPosition = [row, col];
   }
 
   confirmWords(): void {
     let error = false;
     let oneRight = false;
+    let firstCorrect = '';
     const all = this.gridEl.nativeElement.querySelectorAll('.dirty');
     for (const el of all) {
       if (el.value.toLowerCase() == el.dataset.secret.toLowerCase()) {
         oneRight = true;
+        firstCorrect = el.value.toLowerCase();
         el.classList.add('correct');
         el.disabled = true;
         if (el.classList.contains('trapped')) {
@@ -350,6 +355,20 @@ export class StageOneComponent implements OnInit {
         options[target].value = options[target].dataset.secret.toLowerCase();
         options[target].classList.add('correct');
         options[target].disabled = true;
+      }
+    } else if (oneRight && this.activeCard === 'Rastrear') {
+      const options = this.gridEl.nativeElement.querySelectorAll(
+        '.letter-input:not(.correct)'
+      );
+      console.log('searching for', firstCorrect);
+      for (const el of options) {
+        if (el.dataset.secret.toLowerCase() !== firstCorrect.toLowerCase())
+          continue;
+        else {
+          el.value = el.dataset.secret.toLowerCase();
+          el.classList.add('correct');
+          el.disabled = true;
+        }
       }
     }
 
