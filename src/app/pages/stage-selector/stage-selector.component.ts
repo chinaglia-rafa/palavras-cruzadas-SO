@@ -10,4 +10,10 @@ export class StageSelectorComponent implements OnInit {
   constructor(public player: PlayerService) {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    if (!this.player.character.stages.includes(false)) {
+      console.log('YOU WIN');
+    }
+  }
 }

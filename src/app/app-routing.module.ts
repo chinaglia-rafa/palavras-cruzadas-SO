@@ -5,6 +5,7 @@ import { CharacterCreatorComponent } from './pages/character-creator/character-c
 import { HomeComponent } from './pages/home/home.component';
 import { StageSelectorComponent } from './pages/stage-selector/stage-selector.component';
 import { StageOneComponent } from './pages/stages/stage-one/stage-one.component';
+import { StageThreeComponent } from './pages/stages/stage-three/stage-three.component';
 import { StageTwoComponent } from './pages/stages/stage-two/stage-two.component';
 
 const routes: Routes = [
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path: 'stage-two',
     component: StageTwoComponent,
+    canActivate: [CharacterGuard],
+  },
+  {
+    path: 'stage-three',
+    component: StageThreeComponent,
     canActivate: [CharacterGuard],
   },
 ];

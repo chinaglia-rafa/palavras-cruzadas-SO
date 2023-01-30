@@ -1,0 +1,68 @@
+<paper-button (click)="quit()" class="btn-voltar">Voltar</paper-button>
+<div class="container center">
+  <!-- <div class="page wooden-border-2">
+    <div
+      [style]="
+        'background-image: url(\'../../../assets/portraits/profile-picture.jpg\');'
+      "
+      class="golden-border image-container"
+    ></div>
+    <div class="dialogue"></div>
+    <button class="continue-button">
+      <img src="../../../../assets/icons/arrow.svg" width="32" alt="" />
+    </button>
+  </div> -->
+  <div class="palavras-cruzadas" #gridElement>
+    <div class="grid-line" *ngFor="let line of grid; let lineIndex = index">
+      <div
+        class="grid-tile"
+        [class.hidden]="tile == ''"
+        [class.tip]="tile[0] == '?'"
+        [matTooltip]="tile[0] == '?' ? dicas[tile[1]].text : ''"
+        matTooltipClass="tooltip"
+        *ngFor="let tile of line; let tileIndex = index"
+      >
+        <!-- [class.correct]="(ipt.value | lowercase) == (tile | lowercase)" -->
+        <input
+          maxlength="1"
+          #ipt
+          class="letter-input"
+          [class.aligned]="
+            !isHorizontal
+              ? tileIndex === selectedPosition[1] &&
+                (grid[lineIndex - 1][tileIndex] ||
+                  grid[lineIndex + 1][tileIndex])
+              : lineIndex === selectedPosition[0] &&
+                (grid[lineIndex][tileIndex - 1] ||
+                  grid[lineIndex][tileIndex + 1])
+          "
+          [class.dirty]="ipt.value !== '' && !ipt.classList.contains('correct')"
+          [id]="'ipt-' + lineIndex + '-' + tileIndex"
+          (keyup)="next(lineIndex, tileIndex, $event)"
+          (keydown)="keydown($event)"
+          (focus)="ipt.classList.remove('error')"
+          (click)="changeDirection(lineIndex, tileIndex)"
+          *ngIf="tile.length === 1"
+          type="text"
+          [attr.data-secret]="tile"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="buttons" *ngIf="editMode">
+  <paper-button
+    (click)="confirmWords()"
+    (document:keydown.enter)="confirmWords()"
+    class="btn-confirm"
+    >Confirmar (enter)</paper-button
+  >
+  <br />
+  <paper-button
+    (click)="clear()"
+    (document:keydown.esc)="clear()"
+    class="btn-cancel"
+    >Cancelar (esc)</paper-button
+  >
+</div>
+<character-docker></character-docker>

@@ -14,6 +14,7 @@ import { StageOneComponent } from './pages/stages/stage-one/stage-one.component'
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { StageTwoComponent } from './pages/stages/stage-two/stage-two.component';
 import { SkillCardComponent } from './component/skill-card/skill-card.component';
+import { StageThreeComponent } from './pages/stages/stage-three/stage-three.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SkillCardComponent } from './component/skill-card/skill-card.component'
     StageSelectorComponent,
     StageOneComponent,
     StageTwoComponent,
+    StageThreeComponent,
     SkillCardComponent,
   ],
   imports: [

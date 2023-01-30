@@ -14,11 +14,11 @@ export interface Dica {
 }
 
 @Component({
-  selector: 'app-stage-one',
-  templateUrl: './stage-one.component.html',
-  styleUrls: ['./stage-one.component.scss'],
+  selector: 'app-stage-three',
+  templateUrl: './stage-three.component.html',
+  styleUrls: ['./stage-three.component.scss'],
 })
-export class StageOneComponent implements OnInit {
+export class StageThreeComponent implements OnInit {
   dialogue: Dialogue;
 
   activeCard: string;
@@ -393,7 +393,7 @@ export class StageOneComponent implements OnInit {
 
     if (passed) {
       alert('VITORIA');
-      this.playerService.completeStage(0);
+      this.playerService.completeStage(2);
       this.router.navigateByUrl('/stage-selector');
     } else console.log('ainda não');
   }
