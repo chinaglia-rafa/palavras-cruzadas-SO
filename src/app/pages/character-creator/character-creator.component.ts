@@ -17,6 +17,9 @@ import { PlayerService } from 'src/app/services/player/player.service';
 })
 export class CharacterCreatorComponent implements OnInit {
   portraits = [
+    'knight.jpeg',
+    'mage.jpeg',
+    'ranger.jpeg',
     'profile-picture.jpg',
     'portrait-1.jpg',
     'portrait-2.jpg',

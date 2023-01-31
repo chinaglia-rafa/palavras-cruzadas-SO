@@ -28,64 +28,105 @@ export class StageTwoComponent implements OnInit {
   isHorizontal = false;
 
   grid = [
-    ['', '?0', '', '', '', '', '', '?4', '', ''],
-    ['', 'R', '', '?2', '', '', '', 'P', '', ''],
-    ['', 'A', '', 'R', '', '', '', 'R', '', ''],
-    ['?1', 'F', 'R', 'I', 'O', '', '', 'O', '', ''],
-    ['', 'A', '', 'O', '', '', '', 'C', '', ''],
-    ['', 'E', '', '', '', '', '', 'E', '', ''],
-    ['?3', 'L', 'E', 'G', 'O', 'L', 'A', 'S', '', ''],
-    ['', '', '', '', '', '', '', 'S', '', ''],
-    ['', '', '', '', '', '', '', 'O', '', ''],
-    ['', '', '', '', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', '', '?2', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '?1', '', '', 'C', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', 'C', '', '', 'H', '', '', '', ''],
+    [
+      '?0',
+      'M',
+      'U',
+      'L',
+      'T',
+      'I',
+      'P',
+      'R',
+      'O',
+      'G',
+      'R',
+      'A',
+      'M',
+      'A',
+      'D',
+      'O',
+    ],
+    ['', '', '', '', '', '', '', '', 'N', '', '', 'M', '', '', '', ''],
+    ['', '', '', '', '?3', 'P', 'A', 'R', 'T', 'I', 'Ç', 'A', 'O', '', '', ''],
+    ['', '', '', '', '', '', '', '', 'E', '', '', 'D', '', '', '', ''],
+    ['', '', '', '?4', 'M', 'U', 'T', 'E', 'X', '', '', 'A', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', 'T', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '?5', 'B', 'L', 'O', 'C', 'O', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   ];
 
   dicas = [
     {
       id: '?0',
-      text: 'Nome de um dos criadores deste jogo',
-      quem: 'Texto QUEM para o ?0',
-      como: 'Texto COMO para o ?0',
-      quando: 'Texto QUANDO para o ?0',
-      onde: 'Texto ONDE para o ?0',
-      porque: 'Texto PORQUE para o ?0',
+      text: 'É como se chama um sistema capaz de executar múltiplas tarefas "ao mesmo tempo", ou ter a aparência de fazê-lo',
+      quem: 'O Sistema Operacional em si, é uma característica dele',
+      como: 'Utilizando um escalonador de processos',
+      quando:
+        'Quando se deseja executar diversas atividades, ou processos, de forma alternada',
+      onde: 'No núcleo do Sistema Operacional da Cidade, enquanto está em funcionamento',
+      porque:
+        'Para que a Cidade possa ter suas diversas atividades sendo executadas alternadamente, parecendo que são executadas ao mesmo tempo',
     } as Dica,
     {
       id: '?1',
-      text: 'Ausência de calor',
-      quem: 'Texto QUEM para o ?1',
-      como: 'Texto COMO para o ?1',
-      quando: 'Texto QUANDO para o ?1',
-      onde: 'Texto ONDE para o ?1',
-      porque: 'Texto PORQUE para o ?1',
+      text: 'É como se chama o estado atual da memória principal que a Cidade possui num dado momento no tempo',
+      quem: 'A memória principal é quem contém esse elemento a cada novo passo do funcionamento da Cidade',
+      como: 'Armazenando cada dado necessário ao funcionamento da Cidade como um todo',
+      quando:
+        'A cada passo da execução do Sistema Operacional que rege a Cidade, conforme os processos entram e saem do núcleo do Sistema Operacional',
+      onde: 'Dentro da memória principal',
+      porque:
+        'Para representar o estado da memória principal em um dado momento no tempo',
     } as Dica,
     {
       id: '?2',
-      text: "Corpo d'água doce corrente",
-      quem: 'Texto QUEM para o ?2',
-      como: 'Texto COMO para o ?2',
-      quando: 'Texto QUANDO para o ?2',
-      onde: 'Texto ONDE para o ?2',
-      porque: 'Texto PORQUE para o ?2',
+      text: 'É a ação que os moradores que estão executando uma atividade da Cidade tomam quando é preciso acessar um serviço do Sistema Operacional',
+      quem: 'Uma das atividades da Cidade, que também são chamadas de processos',
+      como: 'Requerindo uma interrupção para o núcleo do Sistema Operacional',
+      quando:
+        'Quando é preciso acessar um serviço oferecido pelo Sistema Operacional da cidade',
+      onde: 'No núcleo do Sistema Operacional',
+      porque:
+        'Para permitir que as atividades que não tem acesso total à Cidade acessem os serviços que seu Sistema Operacional oferece',
     } as Dica,
     {
       id: '?3',
-      text: 'Arqueiro da Sociedade do Anel',
-      quem: 'Texto QUEM para o ?3',
-      como: 'Texto COMO para o ?3',
-      quando: 'Texto QUANDO para o ?3',
-      onde: 'Texto ONDE para o ?3',
-      porque: 'Texto PORQUE para o ?3',
+      text: 'É o nome dado a uma das divisões que existem dentro da estrutura da Cidade responsável por armazenar todos os dados e o Sistema Operacional enquanto a Cidade e seus moradores não estão em funcionamento, dormindo',
+      quem: 'É uma parte da memória secundária da Cidade, que armazena informações e processos enquanto a Cidade dorme',
+      como: 'Através do uso do prédio responsável por gerenciar o armazenamento da Cidade, que divide esse armazenamento em partes menores, segmentos',
+      quando:
+        'Quando é preciso gerenciar diferentes sistemas de arquivos de armazenamento',
+      onde: 'No armazenamento secundário da Cidade, onde ficam os registros de processos e o Sistema Operacional enquanto a Cidade dorme',
+      porque: '',
     } as Dica,
     {
       id: '?4',
-      text: 'Nome que se dá ao conjunto de ações com um objetivo específico',
-      quem: 'Texto QUEM para o ?4',
-      como: 'Texto COMO para o ?4',
-      quando: 'Texto QUANDO para o ?4',
-      onde: 'Texto ONDE para o ?4',
-      porque: 'Texto PORQUE para o ?4',
+      text: 'Técnica que os moradores do núcleo da Cidade usam para impedir que mais de uma atividade sendo executada acesse o mesmo objeto na memória principal da Cidade',
+      quem: 'O núcleo da Cidade, responsável por resguardar a memória principal de interferências e conflitos entre processos',
+      como: 'Impedindo que processos acessem dados sendo acessados por outros processos no momento',
+      quando:
+        'Quando a Cidade está executando mais de um processo que querem acessar o mesmo objeto na memória principal',
+      onde: 'No núcleo da Cidade',
+      porque:
+        'Para garantir a ordem durante a execução das atividades da cidade',
+    } as Dica,
+    {
+      id: '?5',
+      text: 'O nome dado a menor unidade de armazenamento do prédio da Cidade responsável por armazenar os dados e o Sistema Operacional da Cidade enquanto está inativa, dormindo',
+      quem: 'É uma parte da memória secundária da Cidade',
+      como: 'Através do uso do prédio responsável por gerenciar o armazenamento secundário da Cidade',
+      quando:
+        'Quando é preciso armazenar ou recuperar algum dado na memória secundária da Cidade',
+      onde: 'No prédio de armazenamento secundário da Cidade',
+      porque: 'Para manter a ordem dos dados sendo armazenados',
     } as Dica,
   ];
 
@@ -146,7 +187,7 @@ export class StageTwoComponent implements OnInit {
             '.letter-input:not(.correct)'
           );
           const target = Math.floor(Math.random() * (options.length - 1));
-          options[target].value = options[target].dataset.secret.toLowerCase();
+          options[target].value = options[target].dataset.secret.toUpperCase();
           options[target].classList.add('correct');
           options[target].disabled = true;
         }
@@ -156,7 +197,7 @@ export class StageTwoComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.gridEl.nativeElement.querySelector('#ipt-1-1').focus());
+    // console.log(this.gridEl.nativeElement.querySelector('#ipt-5-1').focus());
   }
 
   keydown(event: KeyboardEvent): void {
@@ -200,6 +241,7 @@ export class StageTwoComponent implements OnInit {
       'a',
       'b',
       'c',
+      'ç',
       'd',
       'e',
       'f',
@@ -233,6 +275,7 @@ export class StageTwoComponent implements OnInit {
       '8',
       '9',
       '0',
+      '-',
     ];
 
     let nextRow = row;
@@ -324,6 +367,7 @@ export class StageTwoComponent implements OnInit {
     const all = this.gridEl.nativeElement.querySelectorAll('.dirty');
     for (const el of all) {
       if (el.value.toLowerCase() == el.dataset.secret.toLowerCase()) {
+        el.value = el.value.toUpperCase();
         oneRight = true;
         firstCorrect = el.value.toLowerCase();
         el.classList.add('correct');
@@ -369,7 +413,7 @@ export class StageTwoComponent implements OnInit {
         if (el.dataset.secret.toLowerCase() !== firstCorrect.toLowerCase())
           continue;
         else {
-          el.value = el.dataset.secret.toLowerCase();
+          el.value = el.dataset.secret.toUpperCase();
           el.classList.add('correct');
           el.disabled = true;
         }
@@ -418,6 +462,7 @@ export class StageTwoComponent implements OnInit {
 
   gameOver() {
     alert('Você foi derrotado em sua jornada.');
+    this.playerService.gameOver();
   }
 
   quit(): void {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Character } from 'src/app/models/player.model';
 
@@ -10,7 +11,7 @@ export class PlayerService {
 
   activeCard$ = new BehaviorSubject<string>('');
 
-  constructor() {
+  constructor(private router: Router) {
     const character = JSON.parse(localStorage.getItem('char'));
     this.character = character;
     if (!character) {
@@ -67,5 +68,10 @@ export class PlayerService {
       ].includes(card)
     )
       this.activeCard$.next(card);
+  }
+
+  gameOver(): void {
+    this.character = new Character();
+    this.router.navigateByUrl('/home');
   }
 }

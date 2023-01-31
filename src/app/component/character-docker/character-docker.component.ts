@@ -18,6 +18,6 @@ export class CharacterDockerComponent implements OnInit {
     if (!card) return;
     this.playerService.activate(card.name);
     this.playerService.character.hand[index] = null;
-    // this.playerService.persist();
+    this.playerService.persist();
   }
 }

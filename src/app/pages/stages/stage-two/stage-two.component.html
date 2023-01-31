@@ -12,14 +12,20 @@
       <img src="../../../../assets/icons/arrow.svg" width="32" alt="" />
     </button>
   </div> -->
-  <div class="palavras-cruzadas" #gridElement>
+  <div
+    class="palavras-cruzadas"
+    #gridElement
+    [class.click-on-tip]="waitingForSelection"
+  >
     <div class="grid-line" *ngFor="let line of grid; let lineIndex = index">
       <div
         class="grid-tile"
         [class.hidden]="tile == ''"
         [class.tip]="tile[0] == '?'"
         [matTooltip]="tile[0] == '?' ? dicas[tile[1]].text : ''"
+        [attr.data-question]="tile[0] == '?' ? tile[1] : ''"
         matTooltipClass="tooltip"
+        (click)="select(tile)"
         *ngFor="let tile of line; let tileIndex = index"
       >
         <!-- [class.correct]="(ipt.value | lowercase) == (tile | lowercase)" -->
