@@ -1,19 +1,35 @@
 <paper-button (click)="quit()" class="btn-voltar">Voltar</paper-button>
 <div class="container center">
-  <!-- <div class="page wooden-border-2">
+  <div class="dialog-box page wooden-border-2" *ngIf="isInDialog">
     <div
+      *ngIf="dialogue.message[dialoguePage].isLeft"
       [style]="
-        'background-image: url(\'../../../assets/portraits/profile-picture.jpg\');'
+        'background-image: url(\'../../../assets/portraits/' +
+        dialogue.message[dialoguePage].picture +
+        '\');'
       "
       class="golden-border image-container"
     ></div>
-    <div class="dialogue"></div>
-    <button class="continue-button">
+    <div class="dialogue">
+      <span class="name">{{ dialogue.message[dialoguePage].name }}</span>
+      {{ dialogue.message[dialoguePage].text }}
+    </div>
+    <div
+      *ngIf="!dialogue.message[dialoguePage].isLeft"
+      [style]="
+        'background-image: url(\'../../../assets/portraits/' +
+        dialogue.message[dialoguePage].picture +
+        '\'); margin-right: 37px;'
+      "
+      class="golden-border image-container"
+    ></div>
+    <button class="continue-button" (click)="nextMessage()">
       <img src="../../../../assets/icons/arrow.svg" width="32" alt="" />
     </button>
-  </div> -->
+  </div>
   <div
     class="palavras-cruzadas"
+    *ngIf="!isInDialog"
     #gridElement
     [class.click-on-tip]="waitingForSelection"
   >

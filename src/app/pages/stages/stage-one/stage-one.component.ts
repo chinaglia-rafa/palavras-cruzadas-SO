@@ -27,6 +27,9 @@ export class StageOneComponent implements OnInit {
 
   isHorizontal = false;
 
+  isInDialog = true;
+  dialoguePage = 0;
+
   grid = [
     [
       '',
@@ -66,7 +69,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      '',
+      '?3',
       '',
       '',
       '',
@@ -88,7 +91,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      '?3',
+      'P',
       '',
       '',
       '',
@@ -110,7 +113,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'P',
+      'E',
       '',
       '',
       '',
@@ -132,7 +135,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'E',
+      'R',
       '',
       '',
       '',
@@ -176,7 +179,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'I',
+      'F',
       '',
       '',
       '',
@@ -198,7 +201,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'F',
+      'E',
       '',
       '',
       '',
@@ -220,7 +223,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'E',
+      'R',
       '',
       '',
       '',
@@ -242,7 +245,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'R',
+      'I',
       '',
       '',
       '',
@@ -264,7 +267,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'I',
+      'C',
       '',
       '',
       '',
@@ -286,7 +289,7 @@ export class StageOneComponent implements OnInit {
       'E',
       'R',
       '',
-      'C',
+      'O',
       '',
       '',
       '',
@@ -308,7 +311,7 @@ export class StageOneComponent implements OnInit {
       '',
       '',
       '',
-      'O',
+      '',
       '',
       '',
       '',
@@ -522,7 +525,7 @@ export class StageOneComponent implements OnInit {
         'Enquanto a Cidade está em funcionamento, desperta, e executando atividades',
       onde: 'Como uma das partes do Sistema Operacional da Cidade, uma construção responsável apenas por dividir essas atividades em partes menores',
       porque:
-        'Os moradores do núcleo da Cidade não conseguem distinguir entre uma atividade e outra, e por isso é preciso que uma outra estrutura exista para dizer quais partes de cada atividade executar e em qual ordem',
+        'Os moradores do núcleo da Cidade não conseguem distinguir entre uma atividade e outra, e por isso é preciso que uma outra estrutura exista para dizer quais partes de cada atividade executar e em qual',
     } as Dica,
   ];
 
@@ -539,14 +542,132 @@ export class StageOneComponent implements OnInit {
     this.dialogue = new Dialogue();
     this.dialogue.message.push(
       new Message(
-        'Chinaglia',
-        'profile-picture.jpg',
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
         true,
-        'Hello. Is anyone there?'
+        '"Nós entramos no Portal que havia sido reativado sem sabermos o que encontraríamos do outro lado. Os escritos que já havíamos decifrado ' +
+          'descreviam uma Cidade Perdida no tempo, que funcionava com a perfeição de uma máquina, repleta de prédios e estruturas responsáveis por ' +
+          'manter seu funcionamento."'
       )
     );
     this.dialogue.message.push(
-      new Message('Guide', 'portrait-3.jpg', false, 'Hello. I can help you')
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        '"Nossa tarefa aqui é pesquisar e compreender essa Cidade e suas estruturas, mas para isso precisamos conseguir adentrá-la."'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Saudações, viajante do Portal. Bem-vindo à Cidade.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Olá! Quem é você? Que lugar é esse?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Eu sou guia para todos os que passam pelo Portal para nos visitar. Este lugar é a Cidade, ' +
+          'um glorioso local de perfeição, capaz de calcular e organizar com maestria qualquer tarefa para nossas divindades, que moram além de ' +
+          'nossos muros.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Todos os caminhantes do Portal são bem-vindos na Cidade, para que aprendam e desvendem nossos ' +
+          'segredos em seu tempo. Esse é o seu desejo?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Esse é meu desejo. Será uma jornada perigosa?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Nossa Cidade é impecável e exata, e portanto o erro tem um preço grave. Se você não fizer a sua ' +
+          'tarefa com retidão, você pode não voltar para o seu mundo...'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'De acordo. Abra os portões, por favor.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Claro. Mas saiba, nossa Cidade desperta e adormece com o movimento do Sol. Quando a cidade adormecer, ' +
+          'nenhum prédio estará em funcionamento...'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Suas atividades, e a de todos os moradores, só serão retomadas pela manhã, quando nossa memória coletiva ' +
+          'e sistemas de controle entram em ação novamente.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Curioso. Espero conseguir desvendar os segredos deste lugar impressionante e voltar em segurança.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Algum conselho final?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Nossa Cidade é exata. Cada prédio, morador, estrutura e construção tem propósito. Fique atento na forma ' +
+          'que cada uma delas interage com as outras, e não deixe de usar suas habilidades para alcançar seus objetivos.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Okay. Então vamos lá!'
+      )
     );
 
     this.playerService.activeCard$.subscribe((card: string) => {
@@ -583,7 +704,7 @@ export class StageOneComponent implements OnInit {
             '.letter-input:not(.correct)'
           );
           const target = Math.floor(Math.random() * (options.length - 1));
-          options[target].value = options[target].dataset.secret.toUpperCase();
+          options[target].value = options[target].dataset.secret.toLowerCase();
           options[target].classList.add('correct');
           options[target].disabled = true;
         }
@@ -592,9 +713,7 @@ export class StageOneComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.gridEl.nativeElement.querySelector('#ipt-1-1').focus());
-  }
+  ngAfterViewInit(): void {}
 
   keydown(event: KeyboardEvent): void {
     if (event.key === 'Tab') event.preventDefault();
@@ -637,7 +756,6 @@ export class StageOneComponent implements OnInit {
       'a',
       'b',
       'c',
-      'ç',
       'd',
       'e',
       'f',
@@ -869,5 +987,14 @@ export class StageOneComponent implements OnInit {
     if (a) {
       this.router.navigateByUrl('/stage-selector');
     }
+  }
+
+  nextMessage(): void {
+    if (this.dialoguePage >= this.dialogue.message.length - 1) {
+      this.isInDialog = false;
+      setTimeout(() => {
+        this.gridEl.nativeElement.querySelector('#ipt-5-1').focus();
+      }, 200);
+    } else this.dialoguePage++;
   }
 }

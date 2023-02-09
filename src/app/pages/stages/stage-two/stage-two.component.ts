@@ -27,6 +27,9 @@ export class StageTwoComponent implements OnInit {
 
   isHorizontal = false;
 
+  isInDialog = true;
+  dialoguePage = 0;
+
   grid = [
     ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
@@ -77,9 +80,9 @@ export class StageTwoComponent implements OnInit {
     } as Dica,
     {
       id: '?1',
-      text: 'É como se chama o estado atual da memória principal que a Cidade possui num dado momento no tempo',
+      text: 'É como se chama o estado atual do núcleo da Cidade com todos os seus dados num dado momento no tempo',
       quem: 'A memória principal é quem contém esse elemento a cada novo passo do funcionamento da Cidade',
-      como: 'Armazenando cada dado necessário ao funcionamento da Cidade como um todo',
+      como: 'Armazenando cada dado presente no núcleo da Cidade durante a execução de uma tarefa para uso futuro',
       quando:
         'A cada passo da execução do Sistema Operacional que rege a Cidade, conforme os processos entram e saem do núcleo do Sistema Operacional',
       onde: 'Dentro da memória principal',
@@ -143,14 +146,105 @@ export class StageTwoComponent implements OnInit {
     this.dialogue = new Dialogue();
     this.dialogue.message.push(
       new Message(
-        'Chinaglia',
-        'profile-picture.jpg',
-        true,
-        'Hello. Is anyone there?'
+        'Guia',
+        'guide.png',
+        false,
+        'Viajante do Portal, como vai a sua jornada?'
       )
     );
     this.dialogue.message.push(
-      new Message('Guide', 'portrait-3.jpg', false, 'Hello. I can help you')
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Sua Cidade é um grande feito de engenharia. Os moradores todos sabem exatamente quais trabalhos fazer e por quanto tempo fazer.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Percebi que existe um prédio enorme, repleto de salas cobertas por prateleiras e arquivos, cada uma contendo uma infinidade de informações, ' +
+          'que os moradores lêem ao despertar. Me pergunto do que se trata aquela estrutura.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Obrigado pelo elogio, viajante do Portal. Nosso Grande Arquivo possui uma organização muito meticulosa, de forma que qualquer informação possa ' +
+          'ser facilmente encontrada por nossos moradores.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Além disso, como é possível que todos os moradores consigam se organizar tão bem? Como vocês conseguem organizar o núcleo da Cidade ' +
+          'para executar tantas tarefas ao mesmo tempo?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Uma dúvida digna de pesquisa, viajante, mas tenho certeza que ficará surpreso com um fato:'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Só há uma pessoa trabalhando no núcleo da nossa Cidade.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'O que?? Como isso é possível? Como uma única pessoa consegue saber qual tarefa realizar a cada momento, e como ele consegue fazer com que ' +
+          'todos aqueles outros moradores consigam acessar as partes da Cidade que precisam para trabalhar??'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Ha ha ha... Espero que você mesmo consiga responder essas perguntas antes do fim de sua jornada, viajante do Portal.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Apesar de que, estando em um lugar tão distante de sua terra, eu acho que é merecido que receba mais uma dica: Nossa memória é compartilhada, ' +
+          'mas nem todos os moradores tem acesso a todas as partes dela.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Nosso morador do núcleo da Cidade cuidadosamente registra na memória da Cidade ' +
+          ' cada dado que ele está usando para executar uma certa atividade, de forma que ele possa alternar entre várias atividades sem perder o seu c...'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Ha ha! Acho que falei demais. Boa sorte, viajante do Portal. Espero que nos encontremos novamente em breve.'
+      )
     );
 
     this.playerService.activeCard$.subscribe((card: string) => {
@@ -473,5 +567,14 @@ export class StageTwoComponent implements OnInit {
     if (a) {
       this.router.navigateByUrl('/stage-selector');
     }
+  }
+
+  nextMessage(): void {
+    if (this.dialoguePage >= this.dialogue.message.length - 1) {
+      this.isInDialog = false;
+      setTimeout(() => {
+        this.gridEl.nativeElement.querySelector('#ipt-5-1').focus();
+      }, 200);
+    } else this.dialoguePage++;
   }
 }

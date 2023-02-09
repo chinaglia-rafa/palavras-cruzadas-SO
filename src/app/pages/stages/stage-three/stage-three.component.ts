@@ -23,6 +23,9 @@ export class StageThreeComponent implements OnInit {
 
   activeCard: string;
 
+  isInDialog = true;
+  dialoguePage = 0;
+
   @ViewChild('gridElement') gridEl: ElementRef;
 
   isHorizontal = false;
@@ -498,14 +501,96 @@ export class StageThreeComponent implements OnInit {
     this.dialogue = new Dialogue();
     this.dialogue.message.push(
       new Message(
-        'Chinaglia',
-        'profile-picture.jpg',
-        true,
-        'Hello. Is anyone there?'
+        'Guia',
+        'guide.png',
+        false,
+        'Viajante do Portal, vejo que está se tornando um especialista em nossa Cidade.'
       )
     );
     this.dialogue.message.push(
-      new Message('Guide', 'portrait-3.jpg', false, 'Hello. I can help you')
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Obrigado, guia! Não tem sido uma tarefa fácil.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'Você parece um pouco incomodado. O que está em sua mente?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Estou me aproximando cada vez mais do núcleo da sua Cidade, mas ainda existem diversos mecanismos que não entendo. ' +
+          'Como as suas divindades, que moram fora da Cidade, conseguem explicar as atividades que eles precisam que sua Cidade ' +
+          'execute?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'As divindades que regem a nossa Cidade possuem um idioma próprio para se comunicarem conosco, e nosso morador do núcleo é ' +
+          'treinado e especializado em traduzir esse idioma em instruções que todos nós possamos entender.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'É uma linguagem perfeitamente e lindamente lógica.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Interessante. Interessante... Espero conseguir pesqusiar a fundo o funcionamento dessa comunicação.'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Bom, chegou a hora de eu ir para o passo final de minha jornada. Se eu conseguir chegar ao final deste desafio, poderei retornar ' +
+          'pelo Portal?'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        'Guia',
+        'guide.png',
+        false,
+        'De fato. Se sua pesquisa for verdadeira e feita com esmero, você poderá voltar pelo Portal e partilhar seus novos conhecimentos ' +
+          'com todos os outros que vivem do seu lado do Portal. Caso contrário...'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Não quero nem pensar!'
+      )
+    );
+    this.dialogue.message.push(
+      new Message(
+        this.playerService.character.name,
+        this.playerService.character.profilePicture,
+        true,
+        'Chegou a hora! Vamos lá'
+      )
     );
 
     this.playerService.activeCard$.subscribe((card: string) => {
@@ -828,5 +913,14 @@ export class StageThreeComponent implements OnInit {
     if (a) {
       this.router.navigateByUrl('/stage-selector');
     }
+  }
+
+  nextMessage(): void {
+    if (this.dialoguePage >= this.dialogue.message.length - 1) {
+      this.isInDialog = false;
+      setTimeout(() => {
+        this.gridEl.nativeElement.querySelector('#ipt-5-1').focus();
+      }, 200);
+    } else this.dialoguePage++;
   }
 }

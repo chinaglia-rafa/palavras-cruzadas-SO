@@ -25,6 +25,7 @@
 
 .dialogue {
   padding-left: 16px;
+  flex: 1 auto;
 }
 
 .image-container {
@@ -150,4 +151,23 @@
   background-image: url('../../../../assets/cards/trapped.png');
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.dialog-box {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialogue .name {
+  font-weight: bold;
+  display: block;
+  font-size: 16px;
+  color: #5d4037;
+}
+
+.dialogue {
+  color: #795548;
+  text-align: justify;
+  padding-right: 25px;
 }

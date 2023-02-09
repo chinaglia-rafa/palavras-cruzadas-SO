@@ -13,21 +13,34 @@ h1 {
 }
 
 .container {
-  width: 600px;
+  width: 800px;
   height: 400px;
   display: flex;
   flex-direction: row;
 }
 
-.page {
+.page:not(.selector) {
+  width: 800px;
+  height: 208px;
+  position: relative;
+  font-family: Silkscreen;
+  padding: 16px;
+  box-sizing: border-box;
+  color: #5d4037;
+  display: flex;
+}
+
+.page.selector {
   width: 600px;
   height: 400px;
+  margin: 0 auto;
   position: relative;
   font-family: Silkscreen;
   padding: 16px;
   box-sizing: border-box;
   color: #5d4037;
 }
+
 
 .stages {
   display: flex;
@@ -74,4 +87,54 @@ h1 {
   position: absolute;
   top: 16px;
   left: 16px;
+}
+
+.dialogue {
+  padding-left: 16px;
+  flex: 1 auto;
+}
+
+.image-container {
+  width: 120px;
+  height: 165px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.continue-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  animation: blink infinite 1.5s;
+  cursor: pointer;
+}
+
+@keyframes blink {
+  0% {opacity: 0;}
+  40% {opacity: 1;}
+  60% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.dialog-box {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialogue .name {
+  font-weight: bold;
+  display: block;
+  font-size: 16px;
+  color: #5d4037;
+}
+
+.dialogue {
+  color: #795548;
+  text-align: justify;
+  padding-right: 25px;
 }
