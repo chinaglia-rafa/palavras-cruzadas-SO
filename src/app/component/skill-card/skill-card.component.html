@@ -1,0 +1,17 @@
+<div class="card card-back" *ngIf="!cardData"></div>
+<div class="card" *ngIf="cardData">
+  <div class="title">{{ cardData.name }}</div>
+  <div
+    class="image"
+    style="background-image: url('../../../assets/cards/{{ cardData.image }}')"
+  ></div>
+  <div class="description">
+    <div class="type">{{ cardData.type }}</div>
+    <div class="effect">
+      {{ cardData.effect }}
+    </div>
+    <div class="flavour">
+      {{ cardData.flavour }}
+    </div>
+  </div>
+</div>

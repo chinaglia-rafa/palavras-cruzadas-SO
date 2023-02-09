@@ -1,0 +1,78 @@
+<paper-button [routerLink]="['/']" class="btn-voltar">Voltar</paper-button>
+<div class="container center">
+  <div class="dialog-box page wooden-border-2" *ngIf="isInDialog">
+    <div
+      *ngIf="dialogue.message[dialoguePage].isLeft"
+      [style]="
+        'background-image: url(\'../../../assets/portraits/' +
+        dialogue.message[dialoguePage].picture +
+        '\');'
+      "
+      class="golden-border image-container"
+    ></div>
+    <div class="dialogue">
+      <span class="name">{{ dialogue.message[dialoguePage].name }}</span>
+      {{ dialogue.message[dialoguePage].text }}
+    </div>
+    <div
+      *ngIf="!dialogue.message[dialoguePage].isLeft"
+      [style]="
+        'background-image: url(\'../../../assets/portraits/' +
+        dialogue.message[dialoguePage].picture +
+        '\'); margin-right: 37px;'
+      "
+      class="golden-border image-container"
+    ></div>
+    <button class="continue-button" (click)="nextMessage()">
+      <img src="../../../../assets/icons/arrow.svg" width="32" alt="" />
+    </button>
+  </div>
+  <div *ngIf="!isInDialog" class="page paper-border selector">
+    <h1>Escolha um capítulo</h1>
+    <br />
+    <br />
+    <div class="stages">
+      <div
+        #stage1
+        [class.done]="player.character.stages[0]"
+        class="stage"
+        [routerLink]="['/stage-one']"
+      >
+        <div
+          class="image"
+          style="background-image: url('../../../assets/stage-1.jpg')"
+        ></div>
+        <div>Um novo mundo</div>
+        <paper-button *ngIf="!player.character.stages[0]">Jogar</paper-button>
+      </div>
+      <div
+        #stage2
+        [class.done]="player.character.stages[1]"
+        class="stage"
+        [routerLink]="['/stage-two']"
+      >
+        <div
+          class="image"
+          style="background-image: url('../../../assets/stage-2.jpg')"
+        ></div>
+        <div>Instruções misteriosas</div>
+        <paper-button *ngIf="!player.character.stages[1]">Jogar</paper-button>
+      </div>
+      <div
+        #stage3
+        [class.done]="player.character.stages[2]"
+        class="stage"
+        [routerLink]="['/stage-three']"
+      >
+        <div
+          class="image"
+          style="background-image: url('../../../assets/stage-3.jpg')"
+        ></div>
+        <div>No coração da Cidade</div>
+        <paper-button *ngIf="!player.character.stages[2]">Jogar</paper-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<character-docker></character-docker>

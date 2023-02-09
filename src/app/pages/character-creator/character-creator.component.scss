@@ -47,9 +47,8 @@ h2 {
 }
 
 .image-container {
-  background-image: url('../../../assets/profile-picture.jpg');
   background-repeat: no-repeat;
-  background-size:  auto 250px;
+  background-size:  cover;
   background-position: center;
   width: 180px;
   height: 250px;
@@ -94,6 +93,8 @@ label {
   cursor: pointer;
   padding: 0;
   text-align: left;
+  transition: transform 0.12s ease-in;
+  will-change: transform;
 }
 
 button.square:active {
@@ -106,4 +107,13 @@ button.square:active {
 
 .square img {
   margin: 1px;
+}
+
+.square.wooden-border-2 {
+  transform: rotate(-4deg);
+  filter: saturate(1.5);
+}
+
+.square.wooden-border-2:last-child {
+  transform: rotate(4deg);
 }

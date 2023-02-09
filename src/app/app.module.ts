@@ -7,20 +7,36 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaperButtonComponent } from './component/paper-button/paper-button.component';
 import { CharacterCreatorComponent } from './pages/character-creator/character-creator.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FormsModule } from '@angular/forms';
+import { CharacterDockerComponent } from './component/character-docker/character-docker.component';
+import { StageSelectorComponent } from './pages/stage-selector/stage-selector.component';
+import { StageOneComponent } from './pages/stages/stage-one/stage-one.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { StageTwoComponent } from './pages/stages/stage-two/stage-two.component';
+import { SkillCardComponent } from './component/skill-card/skill-card.component';
+import { StageThreeComponent } from './pages/stages/stage-three/stage-three.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PaperButtonComponent,
     CharacterCreatorComponent,
-    HomeComponent
+    HomeComponent,
+    CharacterDockerComponent,
+    StageSelectorComponent,
+    StageOneComponent,
+    StageTwoComponent,
+    StageThreeComponent,
+    SkillCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatTooltipModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
